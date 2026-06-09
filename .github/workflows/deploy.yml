@@ -29,17 +29,20 @@ jobs:
         with:
           node-version: lts/*
           cache: 'npm'
+          cache-dependency-path: presentation/package-lock.json
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./presentation
 
       - name: Build static assets
         run: npm run build
+        working-directory: ./presentation
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: presentation/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
