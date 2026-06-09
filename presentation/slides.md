@@ -813,3 +813,5 @@ class: text-center
   <div class="ref">Ramesh & Vinay, <em>arXiv:quant-ph/0011049</em> (2000)</div>
   <div class="ref">Grover, <em>Proc. 28th ACM STOC</em> (1996)</div>
 </div>
+
+<img src="./qr_code_fim_slide.png" style="width:100px;position:fixed;left:50px;bottom:50px" >
