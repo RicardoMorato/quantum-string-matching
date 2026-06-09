@@ -38,6 +38,8 @@ highlighter: shiki
 
 <p class="cover-meta">Equipe 5, Computação Quântica, 2026.1</p>
 
+<img src="./qr_code_inicio_slide.png" style="width:100px;position:fixed;right:50px;bottom:50px" />
+
 ---
 
 # Roteiro
