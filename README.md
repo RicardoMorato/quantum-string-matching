@@ -1,7 +1,7 @@
 # Quantum String Matching
 
-**Projeto Final — Computação Quântica | Grupo 5 (String Match)**  
-**CIn-UFPE · 2026.1**  
+**Projeto Final — Computação Quântica | Grupo 5 (String Match)**
+**CIn-UFPE · 2026.1**
 **Equipe:** Ricardo Morato Rocha · Pedro Gabriel Alves da Silva
 
 Implementação do algoritmo de busca de padrão quântico de **Niroula & Nam (2021)** em Qiskit, com análise de ruído em simuladores e execução em hardware IBM Quantum real.
@@ -39,6 +39,31 @@ O token pode ser gerado em [quantum.ibm.com](https://quantum.ibm.com/) após cri
 
 ---
 
+## A Apresentação
+
+### Rodando localmente
+
+Caso você queira ver a apresentação localmente da forma como foi pensada em ser consumida, instale as dependências do diretório `/presentation` com:
+
+```bash
+cd presentation
+npm install
+```
+
+Depois, rode o comando:
+
+```bash
+npm run dev
+```
+
+Esse comando deve redirecionar você para `http://localhost:3030/1`, após isso, interaja com a apresentação normalmente.
+
+### Em formato PPTX
+
+Existe também um arquivo `.pptx` no diretório `/presentation`. Embora não tenha todas as animações adicionadas pelos autores, pode ser visualizada sem problemas.
+
+---
+
 ## O Algoritmo
 
 ### Problema
@@ -46,11 +71,11 @@ O token pode ser gerado em [quantum.ibm.com](https://quantum.ibm.com/) após cri
 Dados um texto binário `T` de comprimento `N` e um padrão binário `P` de comprimento `M`, o objetivo é encontrar todas as posições `i` onde `T[i..i+M-1] = P`.
 
 - Solução clássica (KMP): O(N + M)
-- Solução quântica (Niroula & Nam 2021): **Õ(√N)** — aceleração quadrática via busca de Grover
+- Solução quântica (Niroula & Nam 2021): **Õ(√N)**: aceleração quadrática via busca de Grover
 
 ### Por que Niroula & Nam (2021)?
 
-O artigo de **Ramesh & Vinay (2000)** descreve apenas a complexidade do oráculo, sem fornecer construção de circuito — inviável de implementar diretamente em Qiskit. Já **Niroula & Nam (2021)** apresentam uma implementação explícita em nível de portas quânticas, com o operador de deslocamento cíclico construído via portas CSWAP, o que permite seguir o algoritmo passo a passo.
+O artigo de **Ramesh & Vinay (2000)** descreve apenas a complexidade do oráculo, sem fornecer construção de circuito. Já **Niroula & Nam (2021)** apresentam uma implementação explícita em nível de portas quânticas, com o operador de deslocamento cíclico construído via portas CSWAP, o que permite seguir o algoritmo passo a passo.
 
 ---
 
@@ -207,7 +232,6 @@ A componente i=3 existe porque `⌈log₂(3)⌉ = 2` bits geram superposição s
 | Função | Célula | Descrição |
 |:---|:---:|:---|
 | `encode_string(qc, reg, bits)` | 5 | Codifica uma string binária no registrador via portas X |
-| `cyclic_shift(qc, reg, c)` | 6 | Deslocamento cíclico esquerdo por c posições (decomposição em ciclos de permutação com SWAPs) |
 | `controlled_cyclic_shift(qc, ctrl, reg, c)` | 6 | Versão controlada: substitui cada SWAP por um CSWAP (Fredkin) |
 | `build_grover_oracle(qc, pat_reg)` | 7 | Oráculo de fase — inverte a fase de `\|0...0⟩` no registrador de padrão |
 | `build_grover_diffuser(qc, idx_reg)` | 8 | Difusor de Grover no registrador de índice |
@@ -221,7 +245,7 @@ A componente i=3 existe porque `⌈log₂(3)⌉ = 2` bits geram superposição s
 
 #### Inverso do deslocamento cíclico
 
-A inversa de um deslocamento cíclico esquerdo por `c` posições é o deslocamento esquerdo por `(N - c) % N` — não o mesmo deslocamento aplicado novamente. Aplicar os mesmos SWAPs duas vezes só desfaz o deslocamento em ciclos de comprimento 2; em ciclos maiores, o registrador retorna a uma permutação incorreta.
+A inversa de um deslocamento cíclico esquerdo por `c` posições é o deslocamento esquerdo por `(N - c) % N`, não o mesmo deslocamento aplicado novamente. Aplicar os mesmos SWAPs duas vezes só desfaz o deslocamento em ciclos de comprimento 2; em ciclos maiores, o registrador retorna a uma permutação incorreta.
 
 ```python
 # Descomputa com o inverso correto:
