@@ -81,10 +81,8 @@ highlighter: shiki
 </div>
 
 ---
-
 layout: section
 class: text-center
-
 ---
 
 <div class="section-label">parte 01</div>
@@ -92,8 +90,8 @@ class: text-center
 # Apresentação do Algoritmo
 
 ---
-
-## layout: two-cols
+layout: two-cols
+---
 
 ## Busca de Padrão em Texto
 
@@ -213,9 +211,9 @@ $\tilde{O}(\sqrt{N})$
   <div>
     <strong>Complexidade:</strong><br>
 
-$\tilde{O}(\sqrt{N})$ para 1 match
-$\tilde{O}(\sqrt{N} + \sqrt{kN})$ para todos os $k$ matches<br>
-Espaço: $O(N + M)$
+  $\tilde{O}(\sqrt{N})$ para 1 match
+  $\tilde{O}(\sqrt{N} + \sqrt{kN})$ para todos os $k$ matches<br>
+  Espaço: $O(N + M)$
 
   </div>
 </div>
@@ -283,8 +281,8 @@ Espaço: $O(N + M)$
 </div>
 
 ---
-
-## layout: two-cols
+layout: two-cols
+---
 
 ## Operador de Deslocamento Cíclico
 
@@ -328,8 +326,8 @@ shift por bit 1 (c=2): CSWAP(idx[1], t[j], t[j+2])
 </v-click>
 
 ---
-
-## layout: two-cols
+layout: two-cols
+---
 
 ## Oráculo de Fase
 
@@ -388,8 +386,8 @@ onde $k_{matches}$ é o número de posições de match.
 </v-click>
 
 ---
-
-## class: text-center
+class: text-center
+---
 
 ## Fluxo Completo do Algoritmo
 
@@ -424,10 +422,8 @@ flowchart TD
 </div>
 
 ---
-
 layout: section
 class: text-center
-
 ---
 
 <div class="section-label">parte 02</div>
@@ -435,8 +431,8 @@ class: text-center
 # Metodologia
 
 ---
-
-## layout: two-cols
+layout: two-cols
+---
 
 ## Nossa Implementação
 
@@ -526,20 +522,20 @@ Cancelamos esses casos com phase flips adicionais antes do difusor.
 
 <div class="var-table">
 
-| #   | Texto      | Padrão | Iter | Posição esperada         | Status |
-| --- | ---------- | ------ | :--: | ------------------------ | :----: |
-| 1   | `1011`     | `11`   | auto | 2 (match único)          |   ✅   |
-| 2   | `1101`     | `11`   | auto | 0 (início)               |   ✅   |
-| 3   | `0011`     | `11`   | auto | 2 (final)                |   ✅   |
-| 4   | `1111`     | `11`   | auto | 0, 1, 2 (múltiplos)      |   ✅   |
-| 5   | `1010`     | `11`   | auto | — (sem match)            |   ✅   |
-| 6   | `10110`    | `110`  | auto | 2 (padrão M=3)           |   ✅   |
-| 7   | `101101`   | `110`  | auto | texto mais longo         |   ✅   |
-| 8   | `1011`     | `11`   |  1   | Ótimo para $T=4$ e $P=2$ |   ✅   |
-| 9   | `1011`     | `11`   |  2   | iteração extra           |   ✅   |
-| 10  | `1011`     | `11`   |  3   | super-rotação            |   ✅   |
-| 11  | `00110011` | `11`   | auto | N=8, dois matches        |   ✅   |
-| 12  | `11001100` | `00`   | auto | N=8, padrão "00"         |   ✅   |
+| #   | Texto      | Padrão | Iter | Posição esperada                 | Status |
+| --- | ---------- | ------ | :--: | -------------------------------- | :----: |
+| 1   | `1011`     | `11`   | auto | 2 (match único)                  |   ✅   |
+| 2   | `1101`     | `11`   | auto | 0 (início)                       |   ✅   |
+| 3   | `0011`     | `11`   | auto | 2 (final)                        |   ✅   |
+| 4   | `1111`     | `11`   | auto | 0, 1, 2 (múltiplos)              |   ✅   |
+| 5   | `1010`     | `11`   | auto | — (sem match)                    |   ✅   |
+| 6   | `10110`    | `110`  | auto | 2 (padrão M=3)                   |   ✅   |
+| 7   | `101101`   | `110`  | auto | texto mais longo                 |   ✅   |
+| 8   | `1011`     | `11`   |  1   | Ótimo para $T=4$ e $P=2$         |   ✅   |
+| 9   | `1011`     | `11`   |  2   | iteração extra                   |   ✅   |
+| 10  | `1011`     | `11`   |  3   | super-rotação                    |   ✅   |
+| 11  | `00110011` | `11`   | auto | N=8, dois matches                |   ✅   |
+| 12  | `11001100` | `00`   | auto | N=8, padrão "00"                 |   ✅   |
 
 </div>
 
@@ -548,6 +544,7 @@ Cancelamos esses casos com phase flips adicionais antes do difusor.
 </div>
 
 ---
+
 
 ## Simulações, Testes e Validações
 
@@ -591,11 +588,10 @@ Cancelamos esses casos com phase flips adicionais antes do difusor.
 Todos os testes estão disponíveis no repositório da equipe, QR Code ao fim da apresentação.
 </div>
 
----
 
+---
 layout: section
 class: text-center
-
 ---
 
 <div class="section-label">parte 03</div>
@@ -619,8 +615,8 @@ Em nossos testes, o algoritmo se provou mais robusto ao amortecimento de fase do
 </div>
 
 ---
-
-## layout: two-cols
+layout: two-cols
+---
 
 ## IBM Quantum (Execução Real)
 
@@ -733,10 +729,8 @@ $T =$ `"1011"` | $P =$ `"11"` | posição esperada = **2** | 1024 shots
 </div>
 
 ---
-
 layout: section
 class: text-center
-
 ---
 
 <div class="section-label">parte 04</div>
@@ -757,8 +751,7 @@ class: text-center
     <div class="conc-title">Algoritmo</div>
     <p>O <strong>operador de deslocamento cíclico</strong> é a chave do algoritmo: coloca em superposição todas as comparações
 
-$T[i..i{+}M{-}1]$ vs $P$ simultaneamente, habilitando a aceleração quântica $\tilde{O}(\sqrt{N})$.</p>
-
+  $T[i..i{+}M{-}1]$ vs $P$ simultaneamente, habilitando a aceleração quântica $\tilde{O}(\sqrt{N})$.</p>
   </div>
 </div>
 
@@ -772,13 +765,12 @@ $T[i..i{+}M{-}1]$ vs $P$ simultaneamente, habilitando a aceleração quântica $
     <div class="conc-title">Ruído e Hardware Real</div>
     <p>O erro depolarizante degrada o algoritmo a partir de:
 
--> $p \approx 0.01$.
+  -> $p \approx 0.01$.
 
   <br>
 
-O hardware real degrada ainda mais (provavelmente por conta de sua profundidade transpilada ~550+), mas o resultado correto ainda é o mais provável.
-O simulador ruidoso <code>NoiseModel.from_backend</code> é uma boa aproximação, mas não captura todos os efeitos.</p>
-
+  O hardware real degrada ainda mais (provavelmente por conta de sua profundidade transpilada ~550+), mas o resultado correto ainda é o mais provável.
+  O simulador ruidoso <code>NoiseModel.from_backend</code> é uma boa aproximação, mas não captura todos os efeitos.</p>
   </div>
 </div>
 
@@ -792,8 +784,7 @@ O simulador ruidoso <code>NoiseModel.from_backend</code> é uma boa aproximaçã
     <div class="conc-title">Implementação</div>
     <p>Dois desafios críticos: (1) o <strong>inverso do shift</strong> exige
 
-$S(N{-}c)$, não os mesmos SWAPs; (2) posições de wrap-around no espaço $2^k$ requerem correção explícita de fase.
-
+  $S(N{-}c)$, não os mesmos SWAPs; (2) posições de wrap-around no espaço $2^k$ requerem correção explícita de fase.
   </p>
   </div>
 </div>
@@ -803,10 +794,8 @@ $S(N{-}c)$, não os mesmos SWAPs; (2) posições de wrap-around no espaço $2^k$
 </div>
 
 ---
-
 layout: center
 class: text-center
-
 ---
 
 <div class="cover-glow small" />
@@ -818,8 +807,7 @@ class: text-center
 <div class="thanks-team mt-8">
   <span class="blue">Pedro Gabriel Alves da Silva</span>
 
-<span class="purple">Ricardo Morato Rocha</span>
-
+  <span class="purple">Ricardo Morato Rocha</span>
 </div>
 
 <div class="thanks-refs mt-8">
