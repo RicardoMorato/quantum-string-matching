@@ -15,3 +15,5 @@ __pycache__/
 # Editores
 .DS_Store
 .vscode/settings.json
+
+/presentation/node_modules/
