@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "slidev slides.md --open",
-    "build": "slidev build slides.md --base ./",
+    "build": "slidev build --base /quantum-string-matching/",
     "export": "slidev export slides.md --format pdf --with-clicks"
   },
   "dependencies": {
