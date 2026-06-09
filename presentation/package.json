@@ -1,0 +1,13 @@
+{
+  "name": "quantum-string-matching-slides",
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --open",
+    "build": "slidev build slides.md --base ./",
+    "export": "slidev export slides.md --format pdf --with-clicks"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.50.0",
+    "@slidev/theme-default": "latest"
+  }
+}
