@@ -422,52 +422,8 @@ flowchart TD
 </div>
 
 ---
-layout: section
-class: text-center
----
 
-<div class="section-label">parte 02</div>
-
-# Metodologia
-
----
-layout: two-cols
----
-
-## Nossa Implementação
-
-**Exemplo base:** $T =$ `"1011"`, $P =$ `"11"`
-
-<div class="stats-row mt-5">
-  <div class="stat">
-    <div class="stat-n blue">8</div>
-    <div class="stat-l">Qubits<br><small>2 idx + 4 txt + 2 pat</small></div>
-  </div>
-  <div class="stat">
-    <div class="stat-n green">1</div>
-    <div class="stat-l">Iteração<br><small>⌊π/4·√2⌋ = 1</small></div>
-  </div>
-  <div class="stat">
-    <div class="stat-n purple">pos 2</div>
-    <div class="stat-l">Resultado<br><small>T[2..3] = "11"</small></div>
-  </div>
-</div>
-
-<v-click>
-
-<div class="note-box mt-5">
-
-**Correção de wrap-around:** posições $i \geq N{-}M{+}1$ no espaço $2^k$ podem gerar falsos positivos por comparação circular.
-
-Ou seja, qualquer posição $i \in [N{-}M + 1, N{-}1]$ não é válida.
-
-Cancelamos esses casos com phase flips adicionais antes do difusor.
-
-</div>
-
-</v-click>
-
-::right::
+## Pseudocódigo do Algoritmo
 
 <div class="impl-code">
 
@@ -516,26 +472,67 @@ Cancelamos esses casos com phase flips adicionais antes do difusor.
   <div class="compare-box pos">🛜 Uncompute do XOR, Uncompute do Shift, Difusor e Medição</div>
 </div>
 
+
+---
+layout: section
+class: text-center
+---
+
+<div class="section-label">parte 02</div>
+
+# Metodologia
+
+---
+
+## Exemplo de Implementação
+
+**Exemplo base:** $T =$ `"1011"`, $P =$ `"11"`
+
+<div class="stats-row mt-5">
+  <div class="stat">
+    <div class="stat-n blue">8</div>
+    <div class="stat-l">Qubits<br><small>2 idx + 4 txt + 2 pat</small></div>
+  </div>
+  <div class="stat">
+    <div class="stat-n green">1</div>
+    <div class="stat-l">Iteração<br><small>⌊π/4·√2⌋ = 1</small></div>
+  </div>
+  <div class="stat">
+    <div class="stat-n purple">pos 2</div>
+    <div class="stat-l">Resultado<br><small>T[2..3] = "11"</small></div>
+  </div>
+</div>
+
+<div class="note-box mt-5">
+
+**Correção de wrap-around:** posições $i \geq N{-}M{+}1$ no espaço $2^k$ podem gerar falsos positivos por comparação circular.
+
+Ou seja, qualquer posição $i \in [N{-}M + 1, N{-}1]$ não é válida.
+
+Cancelamos esses casos com phase flips adicionais antes do difusor.
+
+</div>
+
 ---
 
 ## 12 Variações de Circuito Simulados
 
 <div class="var-table">
 
-| #   | Texto      | Padrão | Iter | Posição esperada                 | Status |
-| --- | ---------- | ------ | :--: | -------------------------------- | :----: |
-| 1   | `1011`     | `11`   | auto | 2 (match único)                  |   ✅   |
-| 2   | `1101`     | `11`   | auto | 0 (início)                       |   ✅   |
-| 3   | `0011`     | `11`   | auto | 2 (final)                        |   ✅   |
-| 4   | `1111`     | `11`   | auto | 0, 1, 2 (múltiplos)              |   ✅   |
-| 5   | `1010`     | `11`   | auto | — (sem match)                    |   ✅   |
-| 6   | `10110`    | `110`  | auto | 2 (padrão M=3)                   |   ✅   |
-| 7   | `101101`   | `110`  | auto | texto mais longo                 |   ✅   |
-| 8   | `1011`     | `11`   |  1   | Ótimo para $T=4$ e $P=2$         |   ✅   |
-| 9   | `1011`     | `11`   |  2   | iteração extra                   |   ✅   |
-| 10  | `1011`     | `11`   |  3   | super-rotação                    |   ✅   |
-| 11  | `00110011` | `11`   | auto | N=8, dois matches                |   ✅   |
-| 12  | `11001100` | `00`   | auto | N=8, padrão "00"                 |   ✅   |
+| #   | Texto      | Padrão | Iter | Objetivo do Teste                                         | Status |
+| --- | ---------- | ------ | :--: | --------------------------------------------------------- | :----: |
+| 1   | `1011`     | `11`   | auto | Verificar funcionamento padrão                            |   ✅   |
+| 2   | `1101`     | `11`   | auto | Testar posição inicial                                    |   ✅   |
+| 3   | `0011`     | `11`   | auto | Testar última posição válida                              |   ✅   |
+| 4   | `1111`     | `11`   | auto | 0Verificar comportamento com múltiplos matches            |   ✅   |
+| 5   | `1010`     | `11`   | auto | Testar resposta na ausência de solução                    |   ✅   |
+| 6   | `10110`    | `110`  | auto | Verificar escalabilidade em N e M                         |   ✅   |
+| 7   | `101101`   | `110`  | auto | Verificar escalabilidade em N                             |   ✅   |
+| 8   | `1011`     | `11`   |  1   | Ótimo para $T=4$ e $P=2$                                  |   ✅   |
+| 9   | `1011`     | `11`   |  2   | Comparação com uma iteração a mais                        |   ✅   |
+| 10  | `1011`     | `11`   |  3   | Testar degradação por excesso (super-rotação)             |   ✅   |
+| 11  | `00110011` | `11`   | auto | Verificar escala para N = 8                               |   ✅   |
+| 12  | `11001100` | `00`   | auto | Testar com padrão diferente                               |   ✅   |
 
 </div>
 
